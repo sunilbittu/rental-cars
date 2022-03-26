@@ -1,0 +1,193 @@
+<form
+  class="form"
+  (ngSubmit)="doSave()"
+  [formGroup]="form"
+  #ngForm="ngForm"
+  *ngIf="form"
+>
+  <mat-form-field floatLabel="always" appearance="outline">
+    <mat-label>{{ fields.car.label }}</mat-label>
+    <input
+      matInput
+      [formControlName]="fields.car.name"
+      [placeholder]="fields.car.placeholder"
+      [required]="fields.car.required"
+    appAutofocus
+    />
+
+    <mat-hint *ngIf="fields.car.hint">
+      {{ fields.car.hint }}
+    </mat-hint>
+
+    <mat-error>
+      <app-validations
+        [control]="form.get(fields.car.name)"
+        [label]="fields.car.label"
+      ></app-validations>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field floatLabel="always" appearance="outline">
+    <mat-label>{{ fields.bookedTimeSlotsFrom.label }}</mat-label>
+    <input
+      matInput
+      [formControlName]="fields.bookedTimeSlotsFrom.name"
+      [placeholder]="fields.bookedTimeSlotsFrom.placeholder"
+      [owlDateTime]="dt1"
+      [owlDateTimeTrigger]="dt1"
+      [required]="fields.bookedTimeSlotsFrom.required"
+    />
+
+    <owl-date-time #dt1></owl-date-time>
+
+    <mat-hint *ngIf="fields.bookedTimeSlotsFrom.hint">
+      {{ fields.bookedTimeSlotsFrom.hint }}
+    </mat-hint>
+
+    <mat-error>
+      <app-validations
+        [control]="form.get(fields.bookedTimeSlotsFrom.name)"
+        [label]="fields.bookedTimeSlotsFrom.label"
+      ></app-validations>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field floatLabel="always" appearance="outline">
+    <mat-label>{{ fields.bookedTimeSlotsTo.label }}</mat-label>
+    <input
+      matInput
+      [formControlName]="fields.bookedTimeSlotsTo.name"
+      [placeholder]="fields.bookedTimeSlotsTo.placeholder"
+      [owlDateTime]="dt2"
+      [owlDateTimeTrigger]="dt2"
+      [required]="fields.bookedTimeSlotsTo.required"
+    />
+
+    <owl-date-time #dt2></owl-date-time>
+
+    <mat-hint *ngIf="fields.bookedTimeSlotsTo.hint">
+      {{ fields.bookedTimeSlotsTo.hint }}
+    </mat-hint>
+
+    <mat-error>
+      <app-validations
+        [control]="form.get(fields.bookedTimeSlotsTo.name)"
+        [label]="fields.bookedTimeSlotsTo.label"
+      ></app-validations>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field floatLabel="always" appearance="outline">
+    <mat-label>{{ fields.totalHours.label }}</mat-label>
+    <input
+      matInput
+      [formControlName]="fields.totalHours.name"
+      [required]="fields.totalHours.required"
+      [placeholder]="fields.totalHours.placeholder"
+      type="number"
+      step="1"
+    />
+
+    <mat-hint *ngIf="fields.totalHours.hint">
+      {{ fields.totalHours.hint }}
+    </mat-hint>
+
+    <mat-error>
+      <app-validations
+        [control]="form.get(fields.totalHours.name)"
+        [label]="fields.totalHours.label"
+      ></app-validations>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field floatLabel="always" appearance="outline">
+    <mat-label>{{ fields.totalAmount.label }}</mat-label>
+    <input
+      matInput
+      [formControlName]="fields.totalAmount.name"
+      [placeholder]="fields.totalAmount.placeholder"
+      [required]="fields.totalAmount.required"
+    />
+
+    <mat-hint *ngIf="fields.totalAmount.hint">
+      {{ fields.totalAmount.hint }}
+    </mat-hint>
+
+    <mat-error>
+      <app-validations
+        [control]="form.get(fields.totalAmount.name)"
+        [label]="fields.totalAmount.label"
+      ></app-validations>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field floatLabel="always" appearance="outline">
+    <mat-label>{{ fields.transactionId.label }}</mat-label>
+    <input
+      matInput
+      [formControlName]="fields.transactionId.name"
+      [placeholder]="fields.transactionId.placeholder"
+      [required]="fields.transactionId.required"
+    />
+
+    <mat-hint *ngIf="fields.transactionId.hint">
+      {{ fields.transactionId.hint }}
+    </mat-hint>
+
+    <mat-error>
+      <app-validations
+        [control]="form.get(fields.transactionId.name)"
+        [label]="fields.transactionId.label"
+      ></app-validations>
+    </mat-error>
+  </mat-form-field>
+
+  <div
+    class="form-buttons"
+    [class.form-buttons-modal]="modal"
+  >
+    <button
+      mat-raised-button
+      [disabled]="saveLoading"
+      color="primary"
+      type="submit"
+    >
+      <mat-icon
+        inline
+        fontSet="far"
+        fontIcon="fa-save"
+      ></mat-icon
+      >&#160;
+      <app-i18n key="common.save"></app-i18n>
+    </button>
+    <button
+      mat-flat-button
+      [disabled]="saveLoading"
+      (click)="doReset()"
+      type="button"
+    >
+      <mat-icon
+        inline
+        fontSet="fas"
+        fontIcon="fa-undo"
+      ></mat-icon
+      >&#160;
+      <app-i18n key="common.reset"></app-i18n>
+    </button>
+
+    <button
+      mat-flat-button
+      [disabled]="saveLoading"
+      type="button"
+      (click)="cancel.emit()"
+    >
+      <mat-icon
+        inline
+        fontSet="fas"
+        fontIcon="fa-times"
+      ></mat-icon
+      >&#160;
+      <app-i18n key="common.cancel"></app-i18n>
+    </button>
+  </div>
+</form>

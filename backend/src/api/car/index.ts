@@ -1,0 +1,30 @@
+export default (app) => {
+  app.post(
+    `/tenant/:tenantId/car`,
+    require('./carCreate').default,
+  );
+  app.put(
+    `/tenant/:tenantId/car/:id`,
+    require('./carUpdate').default,
+  );
+  app.post(
+    `/tenant/:tenantId/car/import`,
+    require('./carImport').default,
+  );
+  app.delete(
+    `/tenant/:tenantId/car`,
+    require('./carDestroy').default,
+  );
+  app.get(
+    `/tenant/:tenantId/car/autocomplete`,
+    require('./carAutocomplete').default,
+  );
+  app.get(
+    `/tenant/:tenantId/car`,
+    require('./carList').default,
+  );
+  app.get(
+    `/tenant/:tenantId/car/:id`,
+    require('./carFind').default,
+  );
+};

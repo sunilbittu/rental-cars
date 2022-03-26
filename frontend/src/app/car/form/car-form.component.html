@@ -1,0 +1,509 @@
+<form
+  class="form"
+  (ngSubmit)="doSave()"
+  [formGroup]="form"
+  #ngForm="ngForm"
+  *ngIf="form"
+>
+  <mat-form-field floatLabel="always" appearance="outline">
+    <mat-label>{{ fields.name.label }}</mat-label>
+    <input
+      matInput
+      [formControlName]="fields.name.name"
+      [placeholder]="fields.name.placeholder"
+      [required]="fields.name.required"
+    appAutofocus
+    />
+
+    <mat-hint *ngIf="fields.name.hint">
+      {{ fields.name.hint }}
+    </mat-hint>
+
+    <mat-error>
+      <app-validations
+        [control]="form.get(fields.name.name)"
+        [label]="fields.name.label"
+      ></app-validations>
+    </mat-error>
+  </mat-form-field>
+
+  <app-image-form-field
+    [formControl]="form.get(fields.image.name)"
+    [label]="fields.image.label"
+    [hint]="fields.image.hint"
+    [storage]="fields.image.storage"
+    [required]="fields.image.required"
+    [max]="fields.image.max"
+    [submitted]="ngForm.submitted"
+  ></app-image-form-field>
+
+  <mat-form-field floatLabel="always" appearance="outline">
+    <mat-label>{{ fields.seats.label }}</mat-label>
+    <input
+      matInput
+      [formControlName]="fields.seats.name"
+      [required]="fields.seats.required"
+      [placeholder]="fields.seats.placeholder"
+      type="number"
+      step="1"
+    />
+
+    <mat-hint *ngIf="fields.seats.hint">
+      {{ fields.seats.hint }}
+    </mat-hint>
+
+    <mat-error>
+      <app-validations
+        [control]="form.get(fields.seats.name)"
+        [label]="fields.seats.label"
+      ></app-validations>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field floatLabel="always" appearance="outline">
+    <mat-label>{{ fields.carType.label }}</mat-label>
+    <mat-select
+      [formControlName]="fields.carType.name"
+      [placeholder]="fields.carType.placeholder"
+      multiple
+    >
+      <mat-option>--</mat-option>
+      <mat-option
+        *ngFor="let option of fields.carType.options"
+        [value]="option.id"
+      >
+        {{ option.label }}
+      </mat-option>
+    </mat-select>
+    <mat-hint *ngIf="fields.carType.hint">
+      {{ fields.carType.hint }}
+    </mat-hint>
+    <mat-error>
+      <app-validations
+        [control]="form.get(fields.carType.name)"
+        [label]="fields.carType.label"
+      ></app-validations>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field floatLabel="always" appearance="outline">
+    <mat-label>{{ fields.transmission.label }}</mat-label>
+    <mat-select
+      [formControlName]="fields.transmission.name"
+      [placeholder]="fields.transmission.placeholder"
+      multiple
+    >
+      <mat-option>--</mat-option>
+      <mat-option
+        *ngFor="let option of fields.transmission.options"
+        [value]="option.id"
+      >
+        {{ option.label }}
+      </mat-option>
+    </mat-select>
+    <mat-hint *ngIf="fields.transmission.hint">
+      {{ fields.transmission.hint }}
+    </mat-hint>
+    <mat-error>
+      <app-validations
+        [control]="form.get(fields.transmission.name)"
+        [label]="fields.transmission.label"
+      ></app-validations>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field floatLabel="always" appearance="outline">
+    <mat-label>{{ fields.deliveryType.label }}</mat-label>
+    <mat-select
+      [formControlName]="fields.deliveryType.name"
+      [placeholder]="fields.deliveryType.placeholder"
+      multiple
+    >
+      <mat-option>--</mat-option>
+      <mat-option
+        *ngFor="let option of fields.deliveryType.options"
+        [value]="option.id"
+      >
+        {{ option.label }}
+      </mat-option>
+    </mat-select>
+    <mat-hint *ngIf="fields.deliveryType.hint">
+      {{ fields.deliveryType.hint }}
+    </mat-hint>
+    <mat-error>
+      <app-validations
+        [control]="form.get(fields.deliveryType.name)"
+        [label]="fields.deliveryType.label"
+      ></app-validations>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field floatLabel="always" appearance="outline">
+    <mat-label>{{ fields.note.label }}</mat-label>
+    <input
+      matInput
+      [formControlName]="fields.note.name"
+      [placeholder]="fields.note.placeholder"
+      [required]="fields.note.required"
+    />
+
+    <mat-hint *ngIf="fields.note.hint">
+      {{ fields.note.hint }}
+    </mat-hint>
+
+    <mat-error>
+      <app-validations
+        [control]="form.get(fields.note.name)"
+        [label]="fields.note.label"
+      ></app-validations>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field floatLabel="always" appearance="outline">
+    <mat-label>{{ fields.brand.label }}</mat-label>
+    <input
+      matInput
+      [formControlName]="fields.brand.name"
+      [placeholder]="fields.brand.placeholder"
+      [required]="fields.brand.required"
+    />
+
+    <mat-hint *ngIf="fields.brand.hint">
+      {{ fields.brand.hint }}
+    </mat-hint>
+
+    <mat-error>
+      <app-validations
+        [control]="form.get(fields.brand.name)"
+        [label]="fields.brand.label"
+      ></app-validations>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field floatLabel="always" appearance="outline">
+    <mat-label>{{ fields.price.label }}</mat-label>
+    <input
+      matInput
+      [formControlName]="fields.price.name"
+      [placeholder]="fields.price.placeholder"
+      [required]="fields.price.required"
+    />
+
+    <mat-hint *ngIf="fields.price.hint">
+      {{ fields.price.hint }}
+    </mat-hint>
+
+    <mat-error>
+      <app-validations
+        [control]="form.get(fields.price.name)"
+        [label]="fields.price.label"
+      ></app-validations>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field floatLabel="always" appearance="outline">
+    <mat-label>{{ fields.countInStock.label }}</mat-label>
+    <input
+      matInput
+      [formControlName]="fields.countInStock.name"
+      [required]="fields.countInStock.required"
+      [placeholder]="fields.countInStock.placeholder"
+      type="number"
+      step="1"
+    />
+
+    <mat-hint *ngIf="fields.countInStock.hint">
+      {{ fields.countInStock.hint }}
+    </mat-hint>
+
+    <mat-error>
+      <app-validations
+        [control]="form.get(fields.countInStock.name)"
+        [label]="fields.countInStock.label"
+      ></app-validations>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field floatLabel="always" appearance="outline">
+    <mat-label>{{ fields.rating.label }}</mat-label>
+    <input
+      matInput
+      [formControlName]="fields.rating.name"
+      [placeholder]="fields.rating.placeholder"
+      [required]="fields.rating.required"
+    />
+
+    <mat-hint *ngIf="fields.rating.hint">
+      {{ fields.rating.hint }}
+    </mat-hint>
+
+    <mat-error>
+      <app-validations
+        [control]="form.get(fields.rating.name)"
+        [label]="fields.rating.label"
+      ></app-validations>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field floatLabel="always" appearance="outline">
+    <mat-label>{{ fields.numReviews.label }}</mat-label>
+    <input
+      matInput
+      [formControlName]="fields.numReviews.name"
+      [required]="fields.numReviews.required"
+      [placeholder]="fields.numReviews.placeholder"
+      type="number"
+      step="1"
+    />
+
+    <mat-hint *ngIf="fields.numReviews.hint">
+      {{ fields.numReviews.hint }}
+    </mat-hint>
+
+    <mat-error>
+      <app-validations
+        [control]="form.get(fields.numReviews.name)"
+        [label]="fields.numReviews.label"
+      ></app-validations>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field floatLabel="always" appearance="outline">
+    <mat-label>{{ fields.fuelType.label }}</mat-label>
+    <mat-select
+      [formControlName]="fields.fuelType.name"
+      [placeholder]="fields.fuelType.placeholder"
+      multiple
+    >
+      <mat-option>--</mat-option>
+      <mat-option
+        *ngFor="let option of fields.fuelType.options"
+        [value]="option.id"
+      >
+        {{ option.label }}
+      </mat-option>
+    </mat-select>
+    <mat-hint *ngIf="fields.fuelType.hint">
+      {{ fields.fuelType.hint }}
+    </mat-hint>
+    <mat-error>
+      <app-validations
+        [control]="form.get(fields.fuelType.name)"
+        [label]="fields.fuelType.label"
+      ></app-validations>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field floatLabel="always" appearance="outline">
+    <mat-label>{{ fields.locations.label }}</mat-label>
+    <mat-select
+      [formControlName]="fields.locations.name"
+      [placeholder]="fields.locations.placeholder"
+      multiple
+    >
+      <mat-option>--</mat-option>
+      <mat-option
+        *ngFor="let option of fields.locations.options"
+        [value]="option.id"
+      >
+        {{ option.label }}
+      </mat-option>
+    </mat-select>
+    <mat-hint *ngIf="fields.locations.hint">
+      {{ fields.locations.hint }}
+    </mat-hint>
+    <mat-error>
+      <app-validations
+        [control]="form.get(fields.locations.name)"
+        [label]="fields.locations.label"
+      ></app-validations>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field floatLabel="always" appearance="outline">
+    <mat-label>{{ fields.freeKms.label }}</mat-label>
+    <input
+      matInput
+      [formControlName]="fields.freeKms.name"
+      [required]="fields.freeKms.required"
+      [placeholder]="fields.freeKms.placeholder"
+      type="number"
+      step="1"
+    />
+
+    <mat-hint *ngIf="fields.freeKms.hint">
+      {{ fields.freeKms.hint }}
+    </mat-hint>
+
+    <mat-error>
+      <app-validations
+        [control]="form.get(fields.freeKms.name)"
+        [label]="fields.freeKms.label"
+      ></app-validations>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field floatLabel="always" appearance="outline">
+    <mat-label>{{ fields.deliveryCharges.label }}</mat-label>
+    <input
+      matInput
+      [formControlName]="fields.deliveryCharges.name"
+      [placeholder]="fields.deliveryCharges.placeholder"
+      [required]="fields.deliveryCharges.required"
+    />
+
+    <mat-hint *ngIf="fields.deliveryCharges.hint">
+      {{ fields.deliveryCharges.hint }}
+    </mat-hint>
+
+    <mat-error>
+      <app-validations
+        [control]="form.get(fields.deliveryCharges.name)"
+        [label]="fields.deliveryCharges.label"
+      ></app-validations>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field floatLabel="always" appearance="outline">
+    <mat-label>{{ fields.bookedTimeSlotsFrom.label }}</mat-label>
+    <input
+      matInput
+      [formControlName]="fields.bookedTimeSlotsFrom.name"
+      [placeholder]="fields.bookedTimeSlotsFrom.placeholder"
+      [owlDateTime]="dt16"
+      [owlDateTimeTrigger]="dt16"
+      [required]="fields.bookedTimeSlotsFrom.required"
+    />
+
+    <owl-date-time #dt16></owl-date-time>
+
+    <mat-hint *ngIf="fields.bookedTimeSlotsFrom.hint">
+      {{ fields.bookedTimeSlotsFrom.hint }}
+    </mat-hint>
+
+    <mat-error>
+      <app-validations
+        [control]="form.get(fields.bookedTimeSlotsFrom.name)"
+        [label]="fields.bookedTimeSlotsFrom.label"
+      ></app-validations>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field floatLabel="always" appearance="outline">
+    <mat-label>{{ fields.bookedTimeSlotsTo.label }}</mat-label>
+    <input
+      matInput
+      [formControlName]="fields.bookedTimeSlotsTo.name"
+      [placeholder]="fields.bookedTimeSlotsTo.placeholder"
+      [owlDateTime]="dt17"
+      [owlDateTimeTrigger]="dt17"
+      [required]="fields.bookedTimeSlotsTo.required"
+    />
+
+    <owl-date-time #dt17></owl-date-time>
+
+    <mat-hint *ngIf="fields.bookedTimeSlotsTo.hint">
+      {{ fields.bookedTimeSlotsTo.hint }}
+    </mat-hint>
+
+    <mat-error>
+      <app-validations
+        [control]="form.get(fields.bookedTimeSlotsTo.name)"
+        [label]="fields.bookedTimeSlotsTo.label"
+      ></app-validations>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field floatLabel="always" appearance="outline">
+    <mat-label>{{ fields.rentPerHour.label }}</mat-label>
+    <input
+      matInput
+      [formControlName]="fields.rentPerHour.name"
+      [placeholder]="fields.rentPerHour.placeholder"
+      [required]="fields.rentPerHour.required"
+    />
+
+    <mat-hint *ngIf="fields.rentPerHour.hint">
+      {{ fields.rentPerHour.hint }}
+    </mat-hint>
+
+    <mat-error>
+      <app-validations
+        [control]="form.get(fields.rentPerHour.name)"
+        [label]="fields.rentPerHour.label"
+      ></app-validations>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field floatLabel="always" appearance="outline">
+    <mat-label>{{ fields.capacity.label }}</mat-label>
+    <input
+      matInput
+      [formControlName]="fields.capacity.name"
+      [required]="fields.capacity.required"
+      [placeholder]="fields.capacity.placeholder"
+      type="number"
+      step="1"
+    />
+
+    <mat-hint *ngIf="fields.capacity.hint">
+      {{ fields.capacity.hint }}
+    </mat-hint>
+
+    <mat-error>
+      <app-validations
+        [control]="form.get(fields.capacity.name)"
+        [label]="fields.capacity.label"
+      ></app-validations>
+    </mat-error>
+  </mat-form-field>
+
+  <div
+    class="form-buttons"
+    [class.form-buttons-modal]="modal"
+  >
+    <button
+      mat-raised-button
+      [disabled]="saveLoading"
+      color="primary"
+      type="submit"
+    >
+      <mat-icon
+        inline
+        fontSet="far"
+        fontIcon="fa-save"
+      ></mat-icon
+      >&#160;
+      <app-i18n key="common.save"></app-i18n>
+    </button>
+    <button
+      mat-flat-button
+      [disabled]="saveLoading"
+      (click)="doReset()"
+      type="button"
+    >
+      <mat-icon
+        inline
+        fontSet="fas"
+        fontIcon="fa-undo"
+      ></mat-icon
+      >&#160;
+      <app-i18n key="common.reset"></app-i18n>
+    </button>
+
+    <button
+      mat-flat-button
+      [disabled]="saveLoading"
+      type="button"
+      (click)="cancel.emit()"
+    >
+      <mat-icon
+        inline
+        fontSet="fas"
+        fontIcon="fa-times"
+      ></mat-icon
+      >&#160;
+      <app-i18n key="common.cancel"></app-i18n>
+    </button>
+  </div>
+</form>

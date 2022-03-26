@@ -1,0 +1,45 @@
+<app-breadcrumb [items]="breadcrumb"></app-breadcrumb>
+
+<div class="app-content-page">
+  <h1 class="app-content-title">
+    <app-i18n key="entities.booking.view.title"></app-i18n>
+  </h1>
+
+  <app-booking-view-toolbar></app-booking-view-toolbar>
+
+  <div *ngIf="loading" class="app-page-spinner">
+    <mat-spinner color="accent"></mat-spinner>
+  </div>
+
+  <div *ngIf="!loading">
+    <app-view-item-text
+      [label]="fields.car.label"
+      [value]="presenter(record, 'car')"
+    ></app-view-item-text>
+
+    <app-view-item-text
+      [label]="fields.bookedTimeSlotsFrom.label"
+      [value]="presenter(record, 'bookedTimeSlotsFrom')"
+    ></app-view-item-text>
+
+    <app-view-item-text
+      [label]="fields.bookedTimeSlotsTo.label"
+      [value]="presenter(record, 'bookedTimeSlotsTo')"
+    ></app-view-item-text>
+
+    <app-view-item-text
+      [label]="fields.totalHours.label"
+      [value]="presenter(record, 'totalHours')"
+    ></app-view-item-text>
+
+    <app-view-item-text
+      [label]="fields.totalAmount.label"
+      [value]="presenter(record, 'totalAmount')"
+    ></app-view-item-text>
+
+    <app-view-item-text
+      [label]="fields.transactionId.label"
+      [value]="presenter(record, 'transactionId')"
+    ></app-view-item-text>
+  </div>
+</div>

@@ -1,0 +1,217 @@
+<form
+  class="form"
+  (ngSubmit)="doSave()"
+  [formGroup]="form"
+  #ngForm="ngForm"
+  *ngIf="form"
+>
+  <mat-form-field floatLabel="always" appearance="outline">
+    <mat-label>{{ fields.carId.label }}</mat-label>
+    <input
+      matInput
+      [formControlName]="fields.carId.name"
+      [placeholder]="fields.carId.placeholder"
+      [required]="fields.carId.required"
+    appAutofocus
+    />
+
+    <mat-hint *ngIf="fields.carId.hint">
+      {{ fields.carId.hint }}
+    </mat-hint>
+
+    <mat-error>
+      <app-validations
+        [control]="form.get(fields.carId.name)"
+        [label]="fields.carId.label"
+      ></app-validations>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field floatLabel="always" appearance="outline">
+    <mat-label>{{ fields.bookingAmount.label }}</mat-label>
+    <input
+      matInput
+      [formControlName]="fields.bookingAmount.name"
+      [placeholder]="fields.bookingAmount.placeholder"
+      [required]="fields.bookingAmount.required"
+    />
+
+    <mat-hint *ngIf="fields.bookingAmount.hint">
+      {{ fields.bookingAmount.hint }}
+    </mat-hint>
+
+    <mat-error>
+      <app-validations
+        [control]="form.get(fields.bookingAmount.name)"
+        [label]="fields.bookingAmount.label"
+      ></app-validations>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field floatLabel="always" appearance="outline">
+    <mat-label>{{ fields.shippingAddress.label }}</mat-label>
+    <input
+      matInput
+      [formControlName]="fields.shippingAddress.name"
+      [placeholder]="fields.shippingAddress.placeholder"
+      [required]="fields.shippingAddress.required"
+    />
+
+    <mat-hint *ngIf="fields.shippingAddress.hint">
+      {{ fields.shippingAddress.hint }}
+    </mat-hint>
+
+    <mat-error>
+      <app-validations
+        [control]="form.get(fields.shippingAddress.name)"
+        [label]="fields.shippingAddress.label"
+      ></app-validations>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field floatLabel="always" appearance="outline">
+    <mat-label>{{ fields.paymentMethod.label }}</mat-label>
+    <mat-select
+      [formControlName]="fields.paymentMethod.name"
+      [placeholder]="fields.paymentMethod.placeholder"
+      multiple
+    >
+      <mat-option>--</mat-option>
+      <mat-option
+        *ngFor="let option of fields.paymentMethod.options"
+        [value]="option.id"
+      >
+        {{ option.label }}
+      </mat-option>
+    </mat-select>
+    <mat-hint *ngIf="fields.paymentMethod.hint">
+      {{ fields.paymentMethod.hint }}
+    </mat-hint>
+    <mat-error>
+      <app-validations
+        [control]="form.get(fields.paymentMethod.name)"
+        [label]="fields.paymentMethod.label"
+      ></app-validations>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field floatLabel="always" appearance="outline">
+    <mat-label>{{ fields.deliveryAddress.label }}</mat-label>
+    <input
+      matInput
+      [formControlName]="fields.deliveryAddress.name"
+      [placeholder]="fields.deliveryAddress.placeholder"
+      [required]="fields.deliveryAddress.required"
+    />
+
+    <mat-hint *ngIf="fields.deliveryAddress.hint">
+      {{ fields.deliveryAddress.hint }}
+    </mat-hint>
+
+    <mat-error>
+      <app-validations
+        [control]="form.get(fields.deliveryAddress.name)"
+        [label]="fields.deliveryAddress.label"
+      ></app-validations>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field floatLabel="always" appearance="outline">
+    <mat-label>{{ fields.pickupTime.label }}</mat-label>
+    <input
+      matInput
+      [formControlName]="fields.pickupTime.name"
+      [placeholder]="fields.pickupTime.placeholder"
+      [owlDateTime]="dt5"
+      [owlDateTimeTrigger]="dt5"
+      [required]="fields.pickupTime.required"
+    />
+
+    <owl-date-time #dt5></owl-date-time>
+
+    <mat-hint *ngIf="fields.pickupTime.hint">
+      {{ fields.pickupTime.hint }}
+    </mat-hint>
+
+    <mat-error>
+      <app-validations
+        [control]="form.get(fields.pickupTime.name)"
+        [label]="fields.pickupTime.label"
+      ></app-validations>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field floatLabel="always" appearance="outline">
+    <mat-label>{{ fields.deliveryTime.label }}</mat-label>
+    <input
+      matInput
+      [formControlName]="fields.deliveryTime.name"
+      [placeholder]="fields.deliveryTime.placeholder"
+      [owlDateTime]="dt6"
+      [owlDateTimeTrigger]="dt6"
+      [required]="fields.deliveryTime.required"
+    />
+
+    <owl-date-time #dt6></owl-date-time>
+
+    <mat-hint *ngIf="fields.deliveryTime.hint">
+      {{ fields.deliveryTime.hint }}
+    </mat-hint>
+
+    <mat-error>
+      <app-validations
+        [control]="form.get(fields.deliveryTime.name)"
+        [label]="fields.deliveryTime.label"
+      ></app-validations>
+    </mat-error>
+  </mat-form-field>
+
+  <div
+    class="form-buttons"
+    [class.form-buttons-modal]="modal"
+  >
+    <button
+      mat-raised-button
+      [disabled]="saveLoading"
+      color="primary"
+      type="submit"
+    >
+      <mat-icon
+        inline
+        fontSet="far"
+        fontIcon="fa-save"
+      ></mat-icon
+      >&#160;
+      <app-i18n key="common.save"></app-i18n>
+    </button>
+    <button
+      mat-flat-button
+      [disabled]="saveLoading"
+      (click)="doReset()"
+      type="button"
+    >
+      <mat-icon
+        inline
+        fontSet="fas"
+        fontIcon="fa-undo"
+      ></mat-icon
+      >&#160;
+      <app-i18n key="common.reset"></app-i18n>
+    </button>
+
+    <button
+      mat-flat-button
+      [disabled]="saveLoading"
+      type="button"
+      (click)="cancel.emit()"
+    >
+      <mat-icon
+        inline
+        fontSet="fas"
+        fontIcon="fa-times"
+      ></mat-icon
+      >&#160;
+      <app-i18n key="common.cancel"></app-i18n>
+    </button>
+  </div>
+</form>

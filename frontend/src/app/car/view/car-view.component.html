@@ -1,0 +1,145 @@
+<app-breadcrumb [items]="breadcrumb"></app-breadcrumb>
+
+<div class="app-content-page">
+  <h1 class="app-content-title">
+    <app-i18n key="entities.car.view.title"></app-i18n>
+  </h1>
+
+  <app-car-view-toolbar></app-car-view-toolbar>
+
+  <div *ngIf="loading" class="app-page-spinner">
+    <mat-spinner color="accent"></mat-spinner>
+  </div>
+
+  <div *ngIf="!loading">
+    <app-view-item-text
+      [label]="fields.name.label"
+      [value]="presenter(record, 'name')"
+    ></app-view-item-text>
+
+    <app-view-item-images
+      [label]="fields.image.label"
+      [value]="presenter(record, 'image')"
+    ></app-view-item-images>
+
+    <app-view-item-text
+      [label]="fields.seats.label"
+      [value]="presenter(record, 'seats')"
+    ></app-view-item-text>
+
+    <app-view-item-custom
+      [label]="fields.carType.label"
+      [value]="record.carType"
+    >
+      <span
+        *ngFor="let value of presenter(record, 'carType')"
+      >
+        {{ value }} <br />
+      </span>
+    </app-view-item-custom>
+
+    <app-view-item-custom
+      [label]="fields.transmission.label"
+      [value]="record.transmission"
+    >
+      <span
+        *ngFor="let value of presenter(record, 'transmission')"
+      >
+        {{ value }} <br />
+      </span>
+    </app-view-item-custom>
+
+    <app-view-item-custom
+      [label]="fields.deliveryType.label"
+      [value]="record.deliveryType"
+    >
+      <span
+        *ngFor="let value of presenter(record, 'deliveryType')"
+      >
+        {{ value }} <br />
+      </span>
+    </app-view-item-custom>
+
+    <app-view-item-text
+      [label]="fields.note.label"
+      [value]="presenter(record, 'note')"
+    ></app-view-item-text>
+
+    <app-view-item-text
+      [label]="fields.brand.label"
+      [value]="presenter(record, 'brand')"
+    ></app-view-item-text>
+
+    <app-view-item-text
+      [label]="fields.price.label"
+      [value]="presenter(record, 'price')"
+    ></app-view-item-text>
+
+    <app-view-item-text
+      [label]="fields.countInStock.label"
+      [value]="presenter(record, 'countInStock')"
+    ></app-view-item-text>
+
+    <app-view-item-text
+      [label]="fields.rating.label"
+      [value]="presenter(record, 'rating')"
+    ></app-view-item-text>
+
+    <app-view-item-text
+      [label]="fields.numReviews.label"
+      [value]="presenter(record, 'numReviews')"
+    ></app-view-item-text>
+
+    <app-view-item-custom
+      [label]="fields.fuelType.label"
+      [value]="record.fuelType"
+    >
+      <span
+        *ngFor="let value of presenter(record, 'fuelType')"
+      >
+        {{ value }} <br />
+      </span>
+    </app-view-item-custom>
+
+    <app-view-item-custom
+      [label]="fields.locations.label"
+      [value]="record.locations"
+    >
+      <span
+        *ngFor="let value of presenter(record, 'locations')"
+      >
+        {{ value }} <br />
+      </span>
+    </app-view-item-custom>
+
+    <app-view-item-text
+      [label]="fields.freeKms.label"
+      [value]="presenter(record, 'freeKms')"
+    ></app-view-item-text>
+
+    <app-view-item-text
+      [label]="fields.deliveryCharges.label"
+      [value]="presenter(record, 'deliveryCharges')"
+    ></app-view-item-text>
+
+    <app-view-item-text
+      [label]="fields.bookedTimeSlotsFrom.label"
+      [value]="presenter(record, 'bookedTimeSlotsFrom')"
+    ></app-view-item-text>
+
+    <app-view-item-text
+      [label]="fields.bookedTimeSlotsTo.label"
+      [value]="presenter(record, 'bookedTimeSlotsTo')"
+    ></app-view-item-text>
+
+    <app-view-item-text
+      [label]="fields.rentPerHour.label"
+      [value]="presenter(record, 'rentPerHour')"
+    ></app-view-item-text>
+
+    <app-view-item-text
+      [label]="fields.capacity.label"
+      [value]="presenter(record, 'capacity')"
+    ></app-view-item-text>
+  </div>
+</div>

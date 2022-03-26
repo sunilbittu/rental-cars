@@ -1,0 +1,30 @@
+export default (app) => {
+  app.post(
+    `/tenant/:tenantId/booking`,
+    require('./bookingCreate').default,
+  );
+  app.put(
+    `/tenant/:tenantId/booking/:id`,
+    require('./bookingUpdate').default,
+  );
+  app.post(
+    `/tenant/:tenantId/booking/import`,
+    require('./bookingImport').default,
+  );
+  app.delete(
+    `/tenant/:tenantId/booking`,
+    require('./bookingDestroy').default,
+  );
+  app.get(
+    `/tenant/:tenantId/booking/autocomplete`,
+    require('./bookingAutocomplete').default,
+  );
+  app.get(
+    `/tenant/:tenantId/booking`,
+    require('./bookingList').default,
+  );
+  app.get(
+    `/tenant/:tenantId/booking/:id`,
+    require('./bookingFind').default,
+  );
+};

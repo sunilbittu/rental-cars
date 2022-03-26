@@ -1,0 +1,295 @@
+<div class="table-responsive">
+  <table
+    style="width: 100%;"
+    mat-table
+    [dataSource]="service.rows"
+    matSort
+    (matSortChange)="service.doChangeSort($event)"
+    [matSortActive]="service.sorter.columnKey"
+    [matSortDirection]="service.sorter.order"
+  >
+    <ng-container matColumnDef="_select">
+      <th mat-header-cell *matHeaderCellDef>
+        <app-table-th-checkbox
+          [rows]="service.rows"
+          [selectedKeys]="service.selectedKeys"
+        ></app-table-th-checkbox>
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <app-table-td-checkbox
+          [row]="row"
+          [selectedKeys]="service.selectedKeys"
+        ></app-table-td-checkbox>
+      </td>
+    </ng-container>
+
+    <ng-container
+      [matColumnDef]="fields.name.name"
+    >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ fields.name.label }}
+      </th>
+      <td mat-cell *matCellDef="let row">
+        {{ presenter(row, 'name') }}
+      </td>
+    </ng-container>
+    <ng-container [matColumnDef]="fields.image.name">
+      <th mat-header-cell *matHeaderCellDef>
+        {{ fields.image.label }}
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <app-table-item-images
+          [value]="presenter(row, 'image')"
+        ></app-table-item-images>
+      </td>
+    </ng-container>
+    <ng-container
+      [matColumnDef]="fields.seats.name"
+    >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ fields.seats.label }}
+      </th>
+      <td mat-cell *matCellDef="let row">
+        {{ presenter(row, 'seats') }}
+      </td>
+    </ng-container>
+    <ng-container [matColumnDef]="fields.carType.name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ fields.carType.label }}
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <div *ngFor="let value of presenter(row, 'carType')">
+          {{ value }}
+        </div>
+      </td>
+    </ng-container>
+    <ng-container [matColumnDef]="fields.transmission.name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ fields.transmission.label }}
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <div *ngFor="let value of presenter(row, 'transmission')">
+          {{ value }}
+        </div>
+      </td>
+    </ng-container>
+    <ng-container [matColumnDef]="fields.deliveryType.name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ fields.deliveryType.label }}
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <div *ngFor="let value of presenter(row, 'deliveryType')">
+          {{ value }}
+        </div>
+      </td>
+    </ng-container>
+    <ng-container
+      [matColumnDef]="fields.note.name"
+    >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ fields.note.label }}
+      </th>
+      <td mat-cell *matCellDef="let row">
+        {{ presenter(row, 'note') }}
+      </td>
+    </ng-container>
+    <ng-container
+      [matColumnDef]="fields.brand.name"
+    >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ fields.brand.label }}
+      </th>
+      <td mat-cell *matCellDef="let row">
+        {{ presenter(row, 'brand') }}
+      </td>
+    </ng-container>
+    <ng-container
+      [matColumnDef]="fields.price.name"
+    >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ fields.price.label }}
+      </th>
+      <td mat-cell *matCellDef="let row">
+        {{ presenter(row, 'price') }}
+      </td>
+    </ng-container>
+    <ng-container
+      [matColumnDef]="fields.countInStock.name"
+    >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ fields.countInStock.label }}
+      </th>
+      <td mat-cell *matCellDef="let row">
+        {{ presenter(row, 'countInStock') }}
+      </td>
+    </ng-container>
+    <ng-container
+      [matColumnDef]="fields.rating.name"
+    >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ fields.rating.label }}
+      </th>
+      <td mat-cell *matCellDef="let row">
+        {{ presenter(row, 'rating') }}
+      </td>
+    </ng-container>
+    <ng-container
+      [matColumnDef]="fields.numReviews.name"
+    >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ fields.numReviews.label }}
+      </th>
+      <td mat-cell *matCellDef="let row">
+        {{ presenter(row, 'numReviews') }}
+      </td>
+    </ng-container>
+    <ng-container [matColumnDef]="fields.fuelType.name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ fields.fuelType.label }}
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <div *ngFor="let value of presenter(row, 'fuelType')">
+          {{ value }}
+        </div>
+      </td>
+    </ng-container>
+    <ng-container [matColumnDef]="fields.locations.name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ fields.locations.label }}
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <div *ngFor="let value of presenter(row, 'locations')">
+          {{ value }}
+        </div>
+      </td>
+    </ng-container>
+    <ng-container
+      [matColumnDef]="fields.freeKms.name"
+    >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ fields.freeKms.label }}
+      </th>
+      <td mat-cell *matCellDef="let row">
+        {{ presenter(row, 'freeKms') }}
+      </td>
+    </ng-container>
+    <ng-container
+      [matColumnDef]="fields.deliveryCharges.name"
+    >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ fields.deliveryCharges.label }}
+      </th>
+      <td mat-cell *matCellDef="let row">
+        {{ presenter(row, 'deliveryCharges') }}
+      </td>
+    </ng-container>
+    <ng-container
+      [matColumnDef]="fields.bookedTimeSlotsFrom.name"
+    >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ fields.bookedTimeSlotsFrom.label }}
+      </th>
+      <td mat-cell *matCellDef="let row">
+        {{ presenter(row, 'bookedTimeSlotsFrom') }}
+      </td>
+    </ng-container>
+    <ng-container
+      [matColumnDef]="fields.bookedTimeSlotsTo.name"
+    >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ fields.bookedTimeSlotsTo.label }}
+      </th>
+      <td mat-cell *matCellDef="let row">
+        {{ presenter(row, 'bookedTimeSlotsTo') }}
+      </td>
+    </ng-container>
+    <ng-container
+      [matColumnDef]="fields.rentPerHour.name"
+    >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ fields.rentPerHour.label }}
+      </th>
+      <td mat-cell *matCellDef="let row">
+        {{ presenter(row, 'rentPerHour') }}
+      </td>
+    </ng-container>
+    <ng-container
+      [matColumnDef]="fields.capacity.name"
+    >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ fields.capacity.label }}
+      </th>
+      <td mat-cell *matCellDef="let row">
+        {{ presenter(row, 'capacity') }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="_actions">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td
+        style="width: 180px; text-align: right;"
+        mat-cell
+        *matCellDef="let row"
+      >
+        <button
+          mat-icon-button
+          type="button"
+          color="primary"
+          [routerLink]="['/car', row.id]"
+          [matTooltip]="i18n('common.view')"
+        >
+          <mat-icon>search</mat-icon>
+        </button>
+
+        <button
+          mat-icon-button
+          type="button"
+          color="primary"
+          *ngIf="hasPermissionToEdit"
+          [routerLink]="['/car', row.id, 'edit']"
+          [matTooltip]="i18n('common.edit')"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+
+        <button
+          mat-icon-button
+          type="button"
+          color="primary"
+          *ngIf="hasPermissionToDestroy"
+          (click)="doDestroy(row.id)"
+          [matTooltip]="i18n('common.destroy')"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columns"></tr>
+    <tr
+      mat-row
+      *matRowDef="let row; columns: this.columns"
+    ></tr>
+  </table>
+
+  <div
+    *ngIf="!service.loading && !service.count"
+    class="mat-table-message"
+  >
+    <app-i18n key="table.noData"></app-i18n>
+  </div>
+
+  <div *ngIf="service.loading" class="mat-table-message">
+    <app-i18n key="table.loading"></app-i18n>
+  </div>
+</div>
+
+<mat-paginator
+  [disabled]="service.loading"
+  [pageIndex]="service.paginationPageIndex"
+  [pageSize]="service.paginationPageSize"
+  [pageSizeOptions]="[10, 20, 30, 40]"
+  [length]="service.count"
+  (page)="service.doChangePagination($event)"
+  showFirstLastButtons
+></mat-paginator>

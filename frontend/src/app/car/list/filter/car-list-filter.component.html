@@ -1,0 +1,405 @@
+<div class="filter">
+  <app-filter-preview
+    [values]="form.value"
+    [fields]="fields"
+    [expanded]="expanded"
+    (click)="doToggleExpanded()"
+    (remove)="doRemove($event)"
+  ></app-filter-preview>
+  <form
+    (ngSubmit)="doFilter()"
+    [formGroup]="form"
+    #ngForm="ngForm"
+    *ngIf="form && expanded"
+  >
+    <div class="row">
+      <div class="col-xs-12 col-lg-6">
+        <mat-form-field floatLabel="always" appearance="outline">
+          <mat-label>{{ fields.name.label }}</mat-label>
+          <input
+            matInput
+            [formControlName]="fields.name.name"
+          />
+          <mat-error>
+            <app-validations
+              [control]="form.get(fields.name.name)"
+              [label]="fields.name.label"
+            ></app-validations>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-xs-12 col-lg-6">
+        <mat-form-field floatLabel="always" appearance="outline">
+          <mat-label>{{ fields.seats.label }}</mat-label>
+          <app-integer-range-input
+            [formControl]="
+              form.get(fields.seatsRange.name)
+            "
+          ></app-integer-range-input>
+          <mat-error>
+            <app-validations
+              [control]="
+                form.get(fields.seatsRange.name)
+              "
+              [label]="fields.seatsRange.label"
+            ></app-validations>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-xs-12 col-lg-6">
+        <mat-form-field floatLabel="always" appearance="outline">
+          <mat-label>{{ fields.carType.label }}</mat-label>
+          <mat-select
+            [formControlName]="fields.carType.name"
+            multiple
+          >
+            <mat-option>--</mat-option>
+            <mat-option
+              *ngFor="let option of fields.carType.options"
+              [value]="option.id"
+            >
+              {{ option.label }}
+            </mat-option>
+          </mat-select>
+          <mat-error>
+            <app-validations
+              [control]="form.get(fields.carType.name)"
+              [label]="fields.carType.label"
+            ></app-validations>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-xs-12 col-lg-6">
+        <mat-form-field floatLabel="always" appearance="outline">
+          <mat-label>{{ fields.transmission.label }}</mat-label>
+          <mat-select
+            [formControlName]="fields.transmission.name"
+            multiple
+          >
+            <mat-option>--</mat-option>
+            <mat-option
+              *ngFor="let option of fields.transmission.options"
+              [value]="option.id"
+            >
+              {{ option.label }}
+            </mat-option>
+          </mat-select>
+          <mat-error>
+            <app-validations
+              [control]="form.get(fields.transmission.name)"
+              [label]="fields.transmission.label"
+            ></app-validations>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-xs-12 col-lg-6">
+        <mat-form-field floatLabel="always" appearance="outline">
+          <mat-label>{{ fields.deliveryType.label }}</mat-label>
+          <mat-select
+            [formControlName]="fields.deliveryType.name"
+            multiple
+          >
+            <mat-option>--</mat-option>
+            <mat-option
+              *ngFor="let option of fields.deliveryType.options"
+              [value]="option.id"
+            >
+              {{ option.label }}
+            </mat-option>
+          </mat-select>
+          <mat-error>
+            <app-validations
+              [control]="form.get(fields.deliveryType.name)"
+              [label]="fields.deliveryType.label"
+            ></app-validations>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-xs-12 col-lg-6">
+        <mat-form-field floatLabel="always" appearance="outline">
+          <mat-label>{{ fields.note.label }}</mat-label>
+          <input
+            matInput
+            [formControlName]="fields.note.name"
+          />
+          <mat-error>
+            <app-validations
+              [control]="form.get(fields.note.name)"
+              [label]="fields.note.label"
+            ></app-validations>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-xs-12 col-lg-6">
+        <mat-form-field floatLabel="always" appearance="outline">
+          <mat-label>{{ fields.brand.label }}</mat-label>
+          <input
+            matInput
+            [formControlName]="fields.brand.name"
+          />
+          <mat-error>
+            <app-validations
+              [control]="form.get(fields.brand.name)"
+              [label]="fields.brand.label"
+            ></app-validations>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-xs-12 col-lg-6">
+        <mat-form-field floatLabel="always" appearance="outline">
+          <mat-label>{{ fields.price.label }}</mat-label>
+          <app-decimal-range-input
+            [formControl]="form.get(fields.priceRange.name)"
+          ></app-decimal-range-input>
+          <mat-error>
+            <app-validations
+              [control]="form.get(fields.priceRange.name)"
+              [label]="fields.priceRange.label"
+            ></app-validations>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-xs-12 col-lg-6">
+        <mat-form-field floatLabel="always" appearance="outline">
+          <mat-label>{{ fields.countInStock.label }}</mat-label>
+          <app-integer-range-input
+            [formControl]="
+              form.get(fields.countInStockRange.name)
+            "
+          ></app-integer-range-input>
+          <mat-error>
+            <app-validations
+              [control]="
+                form.get(fields.countInStockRange.name)
+              "
+              [label]="fields.countInStockRange.label"
+            ></app-validations>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-xs-12 col-lg-6">
+        <mat-form-field floatLabel="always" appearance="outline">
+          <mat-label>{{ fields.rating.label }}</mat-label>
+          <app-decimal-range-input
+            [formControl]="form.get(fields.ratingRange.name)"
+          ></app-decimal-range-input>
+          <mat-error>
+            <app-validations
+              [control]="form.get(fields.ratingRange.name)"
+              [label]="fields.ratingRange.label"
+            ></app-validations>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-xs-12 col-lg-6">
+        <mat-form-field floatLabel="always" appearance="outline">
+          <mat-label>{{ fields.numReviews.label }}</mat-label>
+          <app-integer-range-input
+            [formControl]="
+              form.get(fields.numReviewsRange.name)
+            "
+          ></app-integer-range-input>
+          <mat-error>
+            <app-validations
+              [control]="
+                form.get(fields.numReviewsRange.name)
+              "
+              [label]="fields.numReviewsRange.label"
+            ></app-validations>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-xs-12 col-lg-6">
+        <mat-form-field floatLabel="always" appearance="outline">
+          <mat-label>{{ fields.fuelType.label }}</mat-label>
+          <mat-select
+            [formControlName]="fields.fuelType.name"
+            multiple
+          >
+            <mat-option>--</mat-option>
+            <mat-option
+              *ngFor="let option of fields.fuelType.options"
+              [value]="option.id"
+            >
+              {{ option.label }}
+            </mat-option>
+          </mat-select>
+          <mat-error>
+            <app-validations
+              [control]="form.get(fields.fuelType.name)"
+              [label]="fields.fuelType.label"
+            ></app-validations>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-xs-12 col-lg-6">
+        <mat-form-field floatLabel="always" appearance="outline">
+          <mat-label>{{ fields.locations.label }}</mat-label>
+          <mat-select
+            [formControlName]="fields.locations.name"
+            multiple
+          >
+            <mat-option>--</mat-option>
+            <mat-option
+              *ngFor="let option of fields.locations.options"
+              [value]="option.id"
+            >
+              {{ option.label }}
+            </mat-option>
+          </mat-select>
+          <mat-error>
+            <app-validations
+              [control]="form.get(fields.locations.name)"
+              [label]="fields.locations.label"
+            ></app-validations>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-xs-12 col-lg-6">
+        <mat-form-field floatLabel="always" appearance="outline">
+          <mat-label>{{ fields.freeKms.label }}</mat-label>
+          <app-integer-range-input
+            [formControl]="
+              form.get(fields.freeKmsRange.name)
+            "
+          ></app-integer-range-input>
+          <mat-error>
+            <app-validations
+              [control]="
+                form.get(fields.freeKmsRange.name)
+              "
+              [label]="fields.freeKmsRange.label"
+            ></app-validations>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-xs-12 col-lg-6">
+        <mat-form-field floatLabel="always" appearance="outline">
+          <mat-label>{{ fields.deliveryCharges.label }}</mat-label>
+          <app-decimal-range-input
+            [formControl]="form.get(fields.deliveryChargesRange.name)"
+          ></app-decimal-range-input>
+          <mat-error>
+            <app-validations
+              [control]="form.get(fields.deliveryChargesRange.name)"
+              [label]="fields.deliveryChargesRange.label"
+            ></app-validations>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-xs-12 col-lg-6">
+        <mat-form-field floatLabel="always" appearance="outline">
+          <mat-label>{{ fields.bookedTimeSlotsFrom.label }}</mat-label>
+          <app-date-time-range-input
+            [formControl]="
+              form.get(fields.bookedTimeSlotsFromRange.name)
+            "
+          ></app-date-time-range-input>
+          <mat-error>
+            <app-validations
+              [control]="form.get(fields.bookedTimeSlotsFromRange.name)"
+              [label]="fields.bookedTimeSlotsFromRange.label"
+            ></app-validations>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-xs-12 col-lg-6">
+        <mat-form-field floatLabel="always" appearance="outline">
+          <mat-label>{{ fields.bookedTimeSlotsTo.label }}</mat-label>
+          <app-date-time-range-input
+            [formControl]="
+              form.get(fields.bookedTimeSlotsToRange.name)
+            "
+          ></app-date-time-range-input>
+          <mat-error>
+            <app-validations
+              [control]="form.get(fields.bookedTimeSlotsToRange.name)"
+              [label]="fields.bookedTimeSlotsToRange.label"
+            ></app-validations>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-xs-12 col-lg-6">
+        <mat-form-field floatLabel="always" appearance="outline">
+          <mat-label>{{ fields.rentPerHour.label }}</mat-label>
+          <app-decimal-range-input
+            [formControl]="form.get(fields.rentPerHourRange.name)"
+          ></app-decimal-range-input>
+          <mat-error>
+            <app-validations
+              [control]="form.get(fields.rentPerHourRange.name)"
+              [label]="fields.rentPerHourRange.label"
+            ></app-validations>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-xs-12 col-lg-6">
+        <mat-form-field floatLabel="always" appearance="outline">
+          <mat-label>{{ fields.capacity.label }}</mat-label>
+          <app-integer-range-input
+            [formControl]="
+              form.get(fields.capacityRange.name)
+            "
+          ></app-integer-range-input>
+          <mat-error>
+            <app-validations
+              [control]="
+                form.get(fields.capacityRange.name)
+              "
+              [label]="fields.capacityRange.label"
+            ></app-validations>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="filter-buttons">
+      <button
+        mat-raised-button
+        [disabled]="loading"
+        color="primary"
+        type="submit"
+      >
+        <mat-icon
+          inline
+          fontSet="fas"
+          fontIcon="fa-search"
+        ></mat-icon
+        >&#160;
+        <app-i18n key="common.search"></app-i18n>
+      </button>
+      <button
+        mat-flat-button
+        [disabled]="loading"
+        (click)="doReset()"
+        type="button"
+      >
+        <mat-icon
+          inline
+          fontSet="fas"
+          fontIcon="fa-undo"
+        ></mat-icon
+        >&#160;
+        <app-i18n key="common.reset"></app-i18n>
+      </button>
+    </div>
+  </form>
+</div>

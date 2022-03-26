@@ -1,0 +1,209 @@
+<form
+  class="form"
+  (ngSubmit)="doSave()"
+  [formGroup]="form"
+  #ngForm="ngForm"
+  *ngIf="form"
+>
+  <mat-form-field floatLabel="always" appearance="outline">
+    <mat-label>{{ fields.name.label }}</mat-label>
+    <input
+      matInput
+      [formControlName]="fields.name.name"
+      [placeholder]="fields.name.placeholder"
+      [required]="fields.name.required"
+    appAutofocus
+    />
+
+    <mat-hint *ngIf="fields.name.hint">
+      {{ fields.name.hint }}
+    </mat-hint>
+
+    <mat-error>
+      <app-validations
+        [control]="form.get(fields.name.name)"
+        [label]="fields.name.label"
+      ></app-validations>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field floatLabel="always" appearance="outline">
+    <mat-label>{{ fields.email.label }}</mat-label>
+    <input
+      matInput
+      [formControlName]="fields.email.name"
+      [placeholder]="fields.email.placeholder"
+      [required]="fields.email.required"
+    />
+
+    <mat-hint *ngIf="fields.email.hint">
+      {{ fields.email.hint }}
+    </mat-hint>
+
+    <mat-error>
+      <app-validations
+        [control]="form.get(fields.email.name)"
+        [label]="fields.email.label"
+      ></app-validations>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field floatLabel="always" appearance="outline">
+    <mat-label>{{ fields.password.label }}</mat-label>
+    <input
+      matInput
+      [formControlName]="fields.password.name"
+      [placeholder]="fields.password.placeholder"
+      [required]="fields.password.required"
+    />
+
+    <mat-hint *ngIf="fields.password.hint">
+      {{ fields.password.hint }}
+    </mat-hint>
+
+    <mat-error>
+      <app-validations
+        [control]="form.get(fields.password.name)"
+        [label]="fields.password.label"
+      ></app-validations>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field floatLabel="always" appearance="outline">
+    <mat-label>{{ fields.phone.label }}</mat-label>
+    <input
+      matInput
+      [formControlName]="fields.phone.name"
+      [placeholder]="fields.phone.placeholder"
+      [required]="fields.phone.required"
+    />
+
+    <mat-hint *ngIf="fields.phone.hint">
+      {{ fields.phone.hint }}
+    </mat-hint>
+
+    <mat-error>
+      <app-validations
+        [control]="form.get(fields.phone.name)"
+        [label]="fields.phone.label"
+      ></app-validations>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field floatLabel="always" appearance="outline">
+    <mat-label>{{ fields.gender.label }}</mat-label>
+    <mat-select
+      [formControlName]="fields.gender.name"
+      [placeholder]="fields.gender.placeholder"
+      multiple
+    >
+      <mat-option>--</mat-option>
+      <mat-option
+        *ngFor="let option of fields.gender.options"
+        [value]="option.id"
+      >
+        {{ option.label }}
+      </mat-option>
+    </mat-select>
+    <mat-hint *ngIf="fields.gender.hint">
+      {{ fields.gender.hint }}
+    </mat-hint>
+    <mat-error>
+      <app-validations
+        [control]="form.get(fields.gender.name)"
+        [label]="fields.gender.label"
+      ></app-validations>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field floatLabel="always" appearance="outline">
+    <mat-label>{{ fields.location.label }}</mat-label>
+    <input
+      matInput
+      [formControlName]="fields.location.name"
+      [placeholder]="fields.location.placeholder"
+      [required]="fields.location.required"
+    />
+
+    <mat-hint *ngIf="fields.location.hint">
+      {{ fields.location.hint }}
+    </mat-hint>
+
+    <mat-error>
+      <app-validations
+        [control]="form.get(fields.location.name)"
+        [label]="fields.location.label"
+      ></app-validations>
+    </mat-error>
+  </mat-form-field>
+
+  <div class="app-form-field app-form-field__boolean">
+    <mat-slide-toggle
+      color="accent"
+      [formControlName]="fields.isAdmin.name"
+    >
+      {{ fields.isAdmin.label }}
+    </mat-slide-toggle>
+
+    <div class="app-form-hint" *ngIf="fields.isAdmin.hint">
+      {{ fields.isAdmin.hint }}
+    </div>
+
+    <div class="app-form-error">
+      <app-validations
+        [control]="form.get(fields.isAdmin.name)"
+        [label]="fields.isAdmin.label"
+        [ngForm]="ngForm"
+      ></app-validations>
+    </div>
+  </div>
+
+  <div
+    class="form-buttons"
+    [class.form-buttons-modal]="modal"
+  >
+    <button
+      mat-raised-button
+      [disabled]="saveLoading"
+      color="primary"
+      type="submit"
+    >
+      <mat-icon
+        inline
+        fontSet="far"
+        fontIcon="fa-save"
+      ></mat-icon
+      >&#160;
+      <app-i18n key="common.save"></app-i18n>
+    </button>
+    <button
+      mat-flat-button
+      [disabled]="saveLoading"
+      (click)="doReset()"
+      type="button"
+    >
+      <mat-icon
+        inline
+        fontSet="fas"
+        fontIcon="fa-undo"
+      ></mat-icon
+      >&#160;
+      <app-i18n key="common.reset"></app-i18n>
+    </button>
+
+    <button
+      mat-flat-button
+      [disabled]="saveLoading"
+      type="button"
+      (click)="cancel.emit()"
+    >
+      <mat-icon
+        inline
+        fontSet="fas"
+        fontIcon="fa-times"
+      ></mat-icon
+      >&#160;
+      <app-i18n key="common.cancel"></app-i18n>
+    </button>
+  </div>
+</form>
